@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Touch begins where vision ends: Generalizable policies for contact-rich manipulation">
+  <meta name="keywords" content="Robot Learning, Tactile Sensing">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Touch begins where vision ends: Generalizable policies for contact-rich manipulation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/title-image.png"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a> -->
+
+<!--       <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape -->
+<!--           </a> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+
+<!--   </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Touch begins where vision ends: Generalizable policies for contact-rich manipulation</h1>
+          <div class="is-size-5 publication-authors">
+            Authors omitted for anonymous review.
+            <!-- <span class="author-block">
+              <a href="https://www.zifanzhao.com">Zifan Zhao</a>,
+            </span>
+            <span class="author-block">
+              <a href="http://siddhanthaldar.github.io/">Siddhant Haldar</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.lerrelpinto.com/">Lerrel Pinto</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://raunaqbhirangi.github.io/">Raunaq Bhirangi</a>
+            </span> -->
+          </div>
+          <!-- <div class="is-size-5 publication-authors">
+            <span class="author-block">New York University</span>
+          </div> -->
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+<!--               PDF Link. -->
+               <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2410.17246"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/anonvital/anonvital"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+
+      <figure class="content has-text-centered">
+        <img
+          id="teaser"
+          src="./static/images/intro.jpeg"
+          alt="ViTaL teaser image"
+          class="full-width-media"
+          loading="lazy"
+        />
+      </figure>
+
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">
+          <b>Vi</b>suo<b>Ta</b>ctile <b>L</b>ocal (<b>ViTaL</b>)
+        </span>
+        policies, an effective framework for precise, contact-rich manipulation that
+        combines visuotactile learning, visual augmentation, and residual RL for highly
+        robust, generalizable policies.
+      </h2>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+        <!-- Paper video.
+     <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="publication-video">
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/video_final.m4v"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <br/>
+    <br/> -->
+
+    <!-- Abstract. -->
+<section class="section hero abstract is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Data-driven approaches struggle with precise manipulation: imitation learning requires a large number of hard-to-obtain demonstrations, 
+            while reinforcement learning yields brittle policies with limited generalization. We propose VisuoTactile Local (ViTaL) policy learning, 
+            a framework that leverages egocentric vision and tactile sensing to learn robust visuotactile policies that are consistent across 
+            task-irrelevant variations in the environment. By combining domain randomization with vision foundation models for segmentation, 
+            we demonstrate that a simple behavior cloning objective is sufficient to train robust, distractor-agnostic visual encoders. These encoders 
+            facilitate learning precise offset policies through reinforcement learning in fixed environments. Our experiments show that ViTaL 
+            policies achieve 90% success rates on fine manipulation tasks in unseen environments while being extremely robust to distractors. 
+            Through a careful ablation study, we validate each component of ViTaL and present a generic pipeline for solving precise, contact-rich 
+            tasks. Finally, we show that ViTaL policies can serve as low-level primitives within high-level VLMs, enabling skill reuse with 
+            significantly improved robustness and success rates compared to existing methods. Videos, experimental details and more results can be 
+            found here.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!--/ Abstract. -->
+
+
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3" style="margin-bottom: 1em;">ViTaL Policy Learning</h2>
+    
+    <div class="columns is-centered">
+      <div class="column">
+        <figure class="content has-text-centered">
+          <img src="./static/images/method.jpeg" alt="ViTaL Figure 2" class="full-width-media" loading="lazy"/>
+        </figure>
+      </div>
+    </div>
+    
+    <!-- Policy Learning Section -->
+    <div class="columns is-centered">
+      <div class="column">
+        <h2 class="title is-3" style="margin-bottom: 1em;">Policy Learning for 4 Precise Tasks</h2>
+        <p>The following videos are learnt ViTaL policy rollouts being executed on the robot at 1x speed.</p>
+      </div>
+    </div>
+    
+    <!-- Videos Row 1-->
+    <div class="columns is-centered">
+      <div class="column">
+        <figure class="content has-text-centered">
+          <h3 class="title is-4">Plug in Socket</h3>
+          <video id="plug-insertion" autoplay muted loop playsinline class="full-width-media" loading="lazy">
+            <source src="./static/video/plug_insertion.mp4" type="video/mp4">
+          </video>
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="content has-text-centered">
+          <h3 class="title is-4">USB Insertion</h3>
+          <video id="usb-insertion" autoplay muted loop playsinline class="full-width-media" loading="lazy">
+            <source src="./static/video/usb_insertion.mp4" type="video/mp4">
+          </video>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Videos Row 2-->
+    <div class="columns is-centered">
+      <div class="column">
+        <figure class="content has-text-centered">
+          <h3 class="title is-4">Card Swiping</h3>
+          <video id="card-swiping" autoplay muted loop playsinline class="full-width-media" loading="lazy">
+            <source src="./static/video/card_swiping.mp4" type="video/mp4">
+          </video>
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="content has-text-centered">
+          <h3 class="title is-4">Key in Lock</h3>
+          <video id="key-insertion" autoplay muted loop playsinline class="full-width-media" loading="lazy">
+            <source src="./static/video/key_insertion.mp4" type="video/mp4">
+          </video>
+        </figure>
+      </div>
+    </div>
+
+     <!-- VLM Reaching + ViTaL Policy -->
+    <div class="columns is-centered">
+      <div class="column">
+        <h2 class="title is-3" style="margin-bottom: 1em;">ViTaL deployment with Reaching and Manipulation</h2>
+        <p>The following videos are rollouts being executed on the robot combing reaching and precise manipulation with spatial and environmental variations.</p>
+      </div>
+    </div>
+    
+    <!-- Videos Row 1-->
+    <div class="columns is-centered">
+      <div class="column">
+        <figure class="content has-text-centered">
+          <h3 class="title is-4">Plug in Socket</h3>
+          <video id="plug-insertion_r" autoplay muted loop playsinline class="full-width-media" loading="lazy">
+            <source src="./static/video/plug_insertion_reaching_uncut.mp4" type="video/mp4">
+          </video>
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="content has-text-centered">
+          <h3 class="title is-4">USB Insertion</h3>
+          <video id="usb-insertion_r" autoplay muted loop playsinline class="full-width-media" loading="lazy">
+            <source src="./static/video/usb_insertion_reaching_uncut.mp4" type="video/mp4">
+          </video>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Videos Row 2-->
+    <div class="columns is-centered">
+      <div class="column">
+        <figure class="content has-text-centered">
+          <h3 class="title is-4">Card Swiping</h3>
+          <video id="card-swiping_r" autoplay muted loop playsinline class="full-width-media" loading="lazy">
+            <source src="./static/video/card_swiping_reaching_uncut.mp4" type="video/mp4">
+          </video>
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="content has-text-centered">
+          <h3 class="title is-4">Key in Lock</h3>
+          <video id="key-insertion_r" autoplay muted loop playsinline class="full-width-media" loading="lazy">
+            <source src="./static/video/key_insertion_reaching_uncut.mp4" type="video/mp4">
+          </video>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Visualization of Input Modalities -->
+    <div class="columns is-centered">
+      <div class="column">
+        <h2 class="title is-3" style="margin-bottom: 1em;">ViTaL deployment with Input Modalities</h2>
+        <p>The following videos show rollouts with the fisheye view (bottom-left) and tactile readings (top-right) displayed simultaneously.</p>
+      </div>
+    </div>
+    
+    <!-- Videos Row 1-->
+    <div class="columns is-centered">
+      <div class="column">
+        <figure class="content has-text-centered">
+          <h3 class="title is-4">Plug in Socket</h3>
+          <video id="plug-insertion_a" autoplay muted loop playsinline class="full-width-media" loading="lazy">
+            <source src="./static/video/plug_insertion_3view_a.mp4" type="video/mp4">
+          </video>
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="content has-text-centered">
+          <h3 class="title is-4">USB Insertion</h3>
+          <video id="usb-insertion_a" autoplay muted loop playsinline class="full-width-media" loading="lazy">
+            <source src="./static/video/usb_insertion_3view_a.mp4" type="video/mp4">
+          </video>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Videos Row 2-->
+    <div class="columns is-centered">
+      <div class="column">
+        <figure class="content has-text-centered">
+          <h3 class="title is-4">Card Swiping</h3>
+          <video id="card-swiping_a" autoplay muted loop playsinline class="full-width-media" loading="lazy">
+            <source src="./static/video/card_swiping_3view_a.mp4" type="video/mp4">
+          </video>
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="content has-text-centered">
+          <h3 class="title is-4">Key in Lock</h3>
+          <video id="key-insertion_a" autoplay muted loop playsinline class="full-width-media" loading="lazy">
+            <source src="./static/video/key_insertion_3view_a.mp4" type="video/mp4">
+          </video>
+        </figure>
+      </div>
+    </div>
+
+    
+    <!-- Robust Deployment under Human Perturbations -->
+    <div class="columns is-centered">
+      <div class="column">
+        <h2 class="title is-3" style="margin-bottom: 1em;">ViTaL deployment with Perturbation</h2>
+        <p>The following videos are rollouts of robot doing precise manipulations with human perturbations.</p>
+      </div>
+    </div>
+    
+  <div class="columns is-centered">
+  <div class="column is-half">
+    <figure class="image has-text-centered">
+      <video
+        id="plug-insertion_p"
+        class="full-width-media"
+        autoplay
+        muted
+        loop
+        playsinline
+        loading="lazy"
+        aria-label="Robot inserting a plug into a socket under perturbation"
+      >
+        <source src="./static/video/plug_insertion_reaching_perturbation.mp4" type="video/mp4">
+      </video>
+    </figure>
+  </div>
+</div>
+
+    <!-- Cross-Embodiment Deployment -->
+    <div class="columns is-centered">
+      <div class="column">
+        <h2 class="title is-3" style="margin-bottom: 1em;">ViTaL Cross-Embodiment deployment </h2>
+        <p>The following videos are rollouts of robot doing precise manipulations with policy training on another robot.</p>
+      </div>
+    </div>
+    
+  <div class="columns is-centered">
+  <div class="column is-half">
+    <figure class="image has-text-centered">
+      <video
+        id="usb-insertion_c"
+        class="full-width-media"
+        autoplay
+        muted
+        loop
+        playsinline
+        loading="lazy"
+        aria-label="Robot inserting a plug into a socket under perturbation"
+      >
+        <source src="./static/video/usb_insertion_cross_embodiment.mp4" type="video/mp4">
+      </video>
+    </figure>
+  </div>
+</div>
+   
+    
+<!-- Experiment Results -->
+<div class="columns is-centered">
+  <div class="column">
+    <h2 class="title is-3" style="margin-bottom: 1em;">Experimental Results</h2>
+    <p>We run 10 evaluations each across 3 seeds, on held out unseen target object positions for each task.</p>
+  </div>
+</div>
+
+<!-- First Row of Images -->
+<div class="columns is-centered">
+  <div class="column">
+    <figure class="content has-text-centered">
+      <h3 class="title is-4">Policy Performance for in-domain experiments</h3>
+      <img src="./static/images/table1.png" alt="Policy Performance for in-domain experiments" class="tq-width-media" loading="lazy"/>
+    </figure>
+  </div>
+</div>
+
+<!-- Second Row of Images -->
+<div class="columns is-centered">
+  <div class="column">
+    <figure class="content has-text-centered">
+      <h3 class="title is-4">Scene and Spatial Generalization of ViTaL</h3>
+      <img src="./static/images/table2.png" alt="Scene and Spatial Generalization of ViTaL" class="full-width-media" loading="lazy"/>
+    </figure>
+  </div>
+</div>
+
+<!-- Third Row of Images -->
+<div class="columns is-centered">
+  <div class="column">
+    <figure class="content has-text-centered">
+      <h3 class="title is-4">Ablations and Design Choices</h3>
+      <img src="./static/images/table3.png" alt="Ablations and Design Choices" class="tq-width-media" loading="lazy"/>
+    </figure>
+  </div>
+</div>
+
+<!-- Fourth Row of Images -->
+<div class="columns is-centered">
+  <div class="column">
+    <figure class="content has-text-centered">
+      <h3 class="title is-4">VLM Navigation for Spatial Generalization Results</h3>
+      <img src="./static/images/table4.png" alt="VLM Navigation for Spatial Generalization Results" class="half-width-media" loading="lazy"/>
+     <!-- <p>Zero-Shot Generalization Results</p> -->
+    </figure>
+  </div>
+</div>
+
+</section>
+
+
+  
+<!-- Footer -->
+<footer class="footer">
+  <div class="container is-max-desktop">
+    <div class="columns is-multiline">
+<!--       <div class="column is-12">
+        <pre><code>@article{,
+  author   = {name of authors},
+  title    = {title name},
+  journal  = {arXiv},
+  year     = {2024},
+}</code></pre>
+      </div> -->
+      <div class="column is-12">
+        <p>
+          This website is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
