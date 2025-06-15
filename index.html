@@ -208,17 +208,24 @@
         <h2 class="title">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Data-driven approaches struggle with precise manipulation: imitation learning requires a large number of hard-to-obtain demonstrations, 
-            while reinforcement learning yields brittle policies with limited generalization. We propose VisuoTactile Local (ViTaL) policy learning, 
-            a framework that leverages egocentric vision and tactile sensing to learn robust visuotactile policies that are consistent across 
-            task-irrelevant variations in the environment. By combining domain randomization with vision foundation models for segmentation, 
-            we demonstrate that a simple behavior cloning objective is sufficient to train robust, distractor-agnostic visual encoders. These encoders 
-            facilitate learning precise offset policies through reinforcement learning in fixed environments. Our experiments show that ViTaL 
-            policies achieve 90% success rates on fine manipulation tasks in unseen environments while being extremely robust to distractors. 
-            Through a careful ablation study, we validate each component of ViTaL and present a generic pipeline for solving precise, contact-rich 
-            tasks. Finally, we show that ViTaL policies can serve as low-level primitives within high-level VLMs, enabling skill reuse with 
-            significantly improved robustness and success rates compared to existing methods. Videos, experimental details and more results can be 
-            found here.
+            Data-driven approaches struggle with precise manipulation: imitation learning requires
+            many hard-to-obtain demonstrations, while reinforcement learning yields brittle, 
+            non-generalizable policies. We introduce VisuoTactile Local (VITAL) policy learning, 
+            a framework that solves fine-grained manipulation tasks by decomposing them into two 
+            phases: a reaching phase, where a vision-language model (VLM) enables scene-level 
+            reasoning to localize the object of interest, and a local interaction phase, where a 
+            reusable, scene-agnostic VITAL policy performs contact-rich manipulation using 
+            egocentric vision and tactile sensing. This approach is motivated by the observation 
+            that while scene context varies, the low level interaction remains consistent across 
+            task instances. By training local policies once in a canonical setting, they can 
+            generalize via a localize-then-execute strategy. VITAL achieves ~90% success on 
+            contact-rich tasks in unseen environments and is robust to distractors. VITAL's 
+            effectiveness stems from three key insights: (1) foundation models for segmentation 
+            enable training robust visual encoders via behavior cloning; (2) these encoders 
+            improve the generalizability of policies learned using residual RL; and (3) tactile 
+            sensing significantly boosts performance in contact-rich tasks. Ablation studies 
+            validate each of these insights, and we demonstrate that VITAL integrates well with
+            high-level VLMs enabling robust, reusable low-level skills.
           </p>
         </div>
       </div>
